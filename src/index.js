@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 
-import Store, {addReducers, dispatch} from 'react-smart-store'
+import Store, {addReducers, dispatch} from 'xstore'
 import user from './reducers/user'
 import dictionary from './reducers/dictionary'
 
@@ -18,9 +18,7 @@ setTimeout(() => {
 
 ReactDOM.render(
 	<Store has="user, dictionary" shouldHave="dictionary">
-		<App>
-			11111
-		</App>
+		<App/>
 	</Store>,
 	document.getElementById('root')
 );
