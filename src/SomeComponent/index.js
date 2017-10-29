@@ -1,25 +1,24 @@
 import React from 'react'
 
-export default class SomeComponent extends React.PureComponent {
-	render() {
+export default function SomeComponent (props) {
+	
 		return <div className="app">
-			Имя: {this.props.user.name}<br/>
-			Статус: {this.props.user.status}<br/>
-			Лист: {this.props.dictionary.list}<br/>
+			Имя: {props.user.name}<br/>
+			Статус: {props.user.status}<br/>
+			Лист: {props.dictionary.list}<br/>
 			
 			<div>
 				<button onClick={() => {
-					this.props.dispatch('user', 'changeStatus', {status: 'killed'});
+					props.dispatch('user', 'changeStatus', {status: 'killed'});
 				}}>
 					Kill
 				</button>
 
 				<button onClick={() => {
-					this.props.dispatch('user', 'rename', {name: 'Stas'});
+					props.dispatch('user', 'rename', {name: 'Stas'});
 				}}>
 					Rename
 				</button>
 			</div>
 		</div>
-	}
 } 

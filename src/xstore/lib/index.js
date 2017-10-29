@@ -150,9 +150,9 @@ export default class Store extends React.PureComponent {
 	}
 
 	render() {
-		let {children: c, shouldHave: sh} = this.props;
-		if (c instanceof Array) {
-			c = c[0];
+		let {children, shouldHave: sh} = this.props;
+		if (!(children instanceof Array)) {
+			children = [children];
 		}
 		if (sh) {
 			if (typeof sh == 'string') {
@@ -168,14 +168,21 @@ export default class Store extends React.PureComponent {
 				}
 			}
 		}
-		if (c.type instanceof Function) {
-			return React.cloneElement(
-				c, 
-				{dispatch, ...this.state}, 
-				c.props.children
-			);
-		}
-		return null;
+		return children.map((c, key) => {
+			if (c.type instanceof Function) {
+				let props = {
+					key,
+					dispatch,
+					...this.state
+				};
+				return React.cloneElement(
+					c, 
+					props, 
+					c.props.children
+				);
+			}
+			return c;
+		});
 	}
 } 
 

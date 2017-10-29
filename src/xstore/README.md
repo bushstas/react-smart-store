@@ -120,6 +120,32 @@ ReactDOM.render(
 )
 ``` 
 
+You can wrap few components with store, not only one. All of them will be subscribed to store changes. HTML elements will be ignored, so you can place them 
+
+```js
+import Store, {addReducers} from 'xstore'
+import user from './reducers/user'
+import dictionary from './reducers/dictionary'
+
+const reducers = {
+  user,
+  dictionary
+};
+addReducers(reducers);
+
+ReactDOM.render(
+  <div>
+    <Store has="*">
+      <SomeComponent1/>
+      <div>
+        .....
+      </div>
+      <SomeComponent2>
+    </Store>
+  </div>
+)
+```
+
 An example of reducer './reducers/user' 
 
 ```js

@@ -22,6 +22,9 @@ export default class App extends React.PureComponent {
 		return 	<div onClick={() => {this.setState({aaa: !this.state.aaa})}}>
 		<Store has="*">
 			<SomeComponent/>
+			<br/>
+			<br/>
+			<SomeComponent/>
 		</Store>
 	</div>
 	}
