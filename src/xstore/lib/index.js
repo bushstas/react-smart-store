@@ -15,11 +15,16 @@ const provider  = new class {
 			for (let name in reducers) {
 				if (reducers[name] instanceof Function && !this.reducers[name]) {
 					this.reducers[name] = reducers[name];
-					this.storages.set(name, reducers[name]()|| {});
+					let action = this.getAction(name);
+					this.storages.set(name, action()|| {});
 					this.distributeChanges(name);
 				}
 			}
 		}
+	}
+
+	getAction(name) {
+		return this.reducers[name];
 	}
 
 	getFor(component) {
@@ -88,7 +93,7 @@ const provider  = new class {
 	dispatch(name, action, payload) {
 		let rd = this.reducers[name];
 		if (rd instanceof Function) {
-			const newState = rd(
+			const newState = this.getAction(name)(
 				this.storages.get(name),
 				action,
 				payload
