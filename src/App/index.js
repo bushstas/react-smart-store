@@ -1,7 +1,7 @@
 import React from 'react'
 import SomeComponent from '../SomeComponent'
 
-import Store, {addReducers} from '../xstore'
+import StoreContainer, {addReducers} from '../xstore'
 import user from '../reducers/user'
 import dictionary from '../reducers/dictionary'
 
@@ -20,12 +20,12 @@ export default class App extends React.PureComponent {
 
 	render() {
 		return 	<div onClick={() => {this.setState({aaa: !this.state.aaa})}}>
-		<Store has="*">
+		<StoreContainer has="*">
 			<SomeComponent/>
 			<br/>
 			<br/>
 			<SomeComponent/>
-		</Store>
+		</StoreContainer>
 	</div>
 	}
 } 

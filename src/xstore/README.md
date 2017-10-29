@@ -15,13 +15,13 @@ npm install --save xstore
 
 ## Usage
 
-Adding reducers and wrapping App component with Store.
-Reducers and Store's "has" props should have the same names
+Adding reducers and wrapping App component with StoreContainer.
+Reducers and StoreContainer's "has" props should have the same names
 
 ```js
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Store, {addReducers} from 'xstore'
+import StoreContainer, {addReducers} from 'xstore'
 import App from './components/App'
 
 import user from './reducers/user'
@@ -33,9 +33,9 @@ addReducers({
 });
 
 ReactDOM.render(
-  <Store has="user, dictionary">
+  <StoreContainer has="user, dictionary">
     <App/>
-  </Store>
+  </StoreContainer>
 )
 ```
 
@@ -50,13 +50,13 @@ const reducers = {
 };
 
 ReactDOM.render(
-  <Store has="user, dictionary" reducers={reducers}>
+  <StoreContainer has="user, dictionary" reducers={reducers}>
     <App/>
-  </Store>
+  </StoreContainer>
 )
 ```
 
-If you pass "reducers" prop to Store, then you dont need pass "has" prop
+If you pass "reducers" prop to StoreContainer, then you dont need pass "has" prop
 
 ```js
 import user from './reducers/user'
@@ -68,9 +68,9 @@ const reducers = {
 };
 
 ReactDOM.render(
-  <Store reducers={reducers}>
+  <StoreContainer reducers={reducers}>
     <App/>
-  </Store>
+  </StoreContainer>
 )
 ```
 
@@ -88,12 +88,12 @@ const reducers = {
 
 ReactDOM.render(
   <div>
-    <Store has={['user', 'dictionary']}>
+    <StoreContainer has={['user', 'dictionary']}>
       <App/>
-    </Store>
-    <Store reducers={reducers}>
+    </StoreContainer>
+    <StoreContainer reducers={reducers}>
       <App/>
-    </Store>
+    </StoreContainer>
   </div>
 )
 ```
@@ -101,7 +101,7 @@ ReactDOM.render(
 You can pass "has" prop = "\*". Then your component will have all store's data
 
 ```js
-import Store, {addReducers} from 'xstore'
+import StoreContainer, {addReducers} from 'xstore'
 import user from './reducers/user'
 import dictionary from './reducers/dictionary'
 
@@ -113,9 +113,9 @@ addReducers(reducers);
 
 ReactDOM.render(
   <div>
-    <Store has="*">
+    <StoreContainer has="*">
       <App/>
-    </Store>
+    </StoreContainer>
   </div>
 )
 ``` 
@@ -123,7 +123,7 @@ ReactDOM.render(
 You can wrap few components with store, not only one. All of them will be subscribed to store changes. HTML elements will be ignored, so you can place them 
 
 ```js
-import Store, {addReducers} from 'xstore'
+import StoreContainer, {addReducers} from 'xstore'
 import user from './reducers/user'
 import dictionary from './reducers/dictionary'
 
@@ -135,13 +135,13 @@ addReducers(reducers);
 
 ReactDOM.render(
   <div>
-    <Store has="*">
+    <StoreContainer has="*">
       <SomeComponent1/>
       <div>
         .....
       </div>
       <SomeComponent2>
-    </Store>
+    </StoreContainer>
   </div>
 )
 ```
@@ -173,7 +173,7 @@ export default (state = INITIAL_STATE, action, payload) => {
 ```
 
 Dispatching store's action.
-Component wrapped with Store has prop "dispatch".
+Component wrapped with StoreContainer has prop "dispatch".
 Props.user and props.dictionary come from store
 
 ```js
@@ -217,12 +217,12 @@ Waiting for an store's item to come and then render
 
 ```js
 import React from 'react'
-import Store from 'xstore'
+import StoreContainer from 'xstore'
 import SomeComponent from './components/SomeComponent'
 
-<Store has="user, dictionary" shouldHave="dictionary">
+<StoreContainer has="user, dictionary" shouldHave="dictionary">
   <SomeComponent/>
-</Store>
+</StoreContainer>
 ```
 
 

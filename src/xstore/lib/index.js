@@ -122,7 +122,7 @@ const provider  = new class {
 };
 
 
-export default class Store extends React.PureComponent {
+export default class XStoreContainer extends React.PureComponent {
 	constructor(props) {
 		super();
 		let {has, reducers} = props;
