@@ -22,6 +22,6 @@
     "react-dom": "^16.0.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "xstore": "file:xstore"
+    "xstore": "^1.0.0"
   }
 }

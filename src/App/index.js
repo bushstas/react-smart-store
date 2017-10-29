@@ -1,24 +1,28 @@
 import React from 'react'
+import SomeComponent from '../SomeComponent'
+
+import Store, {addReducers} from '../xstore'
+import user from '../reducers/user'
+import dictionary from '../reducers/dictionary'
+
+const reducers = {
+	user,
+	dictionary
+}
+
+addReducers(reducers);
 
 export default class App extends React.PureComponent {
-	render() {
-		return <div className="app">
-			Имя: {this.props.user.name}<br/>
-			Статус: {this.props.user.status}<br/>
-			Лист: {this.props.dictionary.list.join(' ,')}
-			<div>
-				<button onClick={() => {
-					this.props.dispatch('user', 'changeStatus', {status: 'killed'});
-				}}>
-					Kill
-				</button>
+	constructor() {
+		super()
+		this.state = {}
+	}
 
-				<button onClick={() => {
-					this.props.dispatch('user', 'rename', {name: 'Stas'});
-				}}>
-					Rename
-				</button>
-			</div>
-		</div>
+	render() {
+		return 	<div onClick={() => {this.setState({aaa: !this.state.aaa})}}>
+		<Store has="*">
+			<SomeComponent/>
+		</Store>
+	</div>
 	}
 } 

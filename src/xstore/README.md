@@ -39,6 +39,87 @@ ReactDOM.render(
 )
 ```
 
+Different way to add reducers
+```js
+import user from './reducers/user'
+import dictionary from './reducers/dictionary'
+
+const reducers = {
+  user,
+  dictionary
+};
+
+ReactDOM.render(
+  <Store has="user, dictionary" reducers={reducers}>
+    <App/>
+  </Store>
+)
+```
+
+If you pass "reducers" prop to Store, then you dont need pass "has" prop
+
+```js
+import user from './reducers/user'
+import dictionary from './reducers/dictionary'
+
+const reducers = {
+  user,
+  dictionary
+};
+
+ReactDOM.render(
+  <Store reducers={reducers}>
+    <App/>
+  </Store>
+)
+```
+
+This code wont cause any errors.
+The first store will get data when the second store adds the reducers
+
+```js
+import user from './reducers/user'
+import dictionary from './reducers/dictionary'
+
+const reducers = {
+  user,
+  dictionary
+};
+
+ReactDOM.render(
+  <div>
+    <Store has={['user', 'dictionary']}>
+      <App/>
+    </Store>
+    <Store reducers={reducers}>
+      <App/>
+    </Store>
+  </div>
+)
+```
+
+You can pass "has" prop = "\*". Then your component will have all store's data
+
+```js
+import Store, {addReducers} from 'xstore'
+import user from './reducers/user'
+import dictionary from './reducers/dictionary'
+
+const reducers = {
+  user,
+  dictionary
+};
+addReducers(reducers);
+
+ReactDOM.render(
+  <div>
+    <Store has="*">
+      <App/>
+    </Store>
+  </div>
+)
+``` 
+
 An example of reducer './reducers/user' 
 
 ```js
